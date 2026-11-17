@@ -15,7 +15,7 @@
   color:  #008000;
   }
 
-       button {
+       .zoeken {
   margin-left: 8px;
   padding: 12px 24px;
   font-size: 16px;
@@ -29,13 +29,13 @@
   transition: all 0.2s ease;
 }
 
-button:hover {
+.zoeken:hover {
   background-color: #008000;
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-button:active {
+.zoeken:active {
   transform: translateY(0);
 }
 
@@ -96,8 +96,8 @@ input:focus {
         // 2. Toon de links voor Google en YouTube
         resultatenVak.innerHTML = `
             <h3>Resultaten voor: "${zoekwoord}"</h3>
-            <p><a href="https://google.com/search?q=${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Google →</a></p>
-            <p><a href="https://youtube.com/results?search_query=${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op YouTube →</a></p>
+            <p><a href="https://google.com/search?q=${encodeURIComponent(zoekwoord)}" target="_blank" class="zoeken">Zoek op Google →</a></p>
+            <p><a href="https://youtube.com/results?search_query=${encodeURIComponent(zoekwoord)}" target="_blank" class="zoeken">Zoek op YouTube →</a></p>
         `;
 
         // 3. Toon het Wikipedia-venster direct op je pagina
