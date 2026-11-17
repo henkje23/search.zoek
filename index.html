@@ -72,12 +72,12 @@ input:focus {
         resultatenVak.innerHTML = `
             <h3>Resultaten voor: "${zoekwoord}"</h3>
             <p><a href="https://google.com/search?q=${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Google →</a></p>
-            <p><a href="https://youtube.com/search?q=${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op YouTube →</a></p>
+            <p><a href="https://youtube.com/results?search_query= dus at youtube${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op YouTube →</a></p>
         `;
 
         // 3. Toon het Wikipedia-venster direct op je pagina
         wikiVenster.style.display = 'block';
-        wikiVenster.src = `https://wikipedia.org/search?q=${encodeURIComponent(zoekwoord)}`;
+        wikiVenster.src = `https://wikipedia.org/w/index.php?search=${encodeURIComponent(zoekwoord)}`;
     });
 </script>
 
