@@ -15,14 +15,30 @@
   color:  #008000;
   }
 
-        a {
-            display: inline-block;
-            background-color: #FF0000;
-            text-decoration: none;
-        }
-        a:hover {
-            background-color: #800080;
-        }
+       button {
+  margin-left: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #0000FF;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: #008000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
       button {
             margin-top: 25px;
             padding: 10px 20px;
@@ -86,7 +102,7 @@ input:focus {
 
         // 3. Toon het Wikipedia-venster direct op je pagina
         wikiVenster.style.display = 'block';
-        wikiVenster.src = `https://wikipedia.org/w/index.php?search=${encodeURIComponent(zoekwoord)}`;
+        wikiVenster.src = `https://nl.wikipedia.org/w/index.php?search=${encodeURIComponent(zoekwoord)}`;
     });
 </script>
 
