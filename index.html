@@ -67,9 +67,9 @@ input:focus {
         // Toon direct de klikbare opties
         resultatenVak.innerHTML = `
             <h3>Zoekresultaten voor: "${zoekwoord}"</h3>
-            <p><a href="https://google.com{encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Google →</a></p>
-            <p><a href="https://wikipedia.org{encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Wikipedia →</a></p>
-            <p><a href="https://youtube.com{encodeURIComponent(zoekwoord)}" target="_blank">Zoek op YouTube →</a></p>
+            <p><a href="https://google.com/search?q=${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Google →</a></p>
+            <p><a href="https://wikipedia.org${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Wikipedia →</a></p>
+            <p><a href="https://youtube.com${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op YouTube →</a></p>
         `;
     });
 </script>
