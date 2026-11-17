@@ -50,32 +50,36 @@ input:focus {
     <button type="submit">Zoeken</button>
 </form>
 
-<!-- Hier verschijnen straks jouw resultaten op de pagina -->
+<!-- Jouw links en tekst -->
 <div id="resultaten"></div>
+
+<!-- Het Wikipedia-venster -->
+<iframe id="wiki-venster" style="width: 100%; max-width: 800px; height: 500px; border: 1px solid #ccc; border-radius: 10px; margin-top: 20px; display: none;"></iframe>
 
 <script>
     const formulier = document.getElementById('zoekformulier');
     const resultatenVak = document.getElementById('resultaten');
+    const wikiVenster = document.getElementById('wiki-venster');
 
     formulier.addEventListener('submit', function(event) {
         event.preventDefault();
         const zoekwoord = formulier.q.value;
 
-        // Zet ?q=... netjes in je eigen adresbalk
+        // 1. Zet ?q=... in je adresbalk
         window.history.pushState({}, '', '?q=' + encodeURIComponent(zoekwoord));
 
-        // Toon direct de klikbare opties
+        // 2. Toon de links voor Google en YouTube
         resultatenVak.innerHTML = `
-            <h3>Zoekresultaten voor: "${zoekwoord}"</h3>
+            <h3>Resultaten voor: "${zoekwoord}"</h3>
             <p><a href="https://google.com/search?q=${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Google →</a></p>
-            <p><a href="https://wikipedia.org${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Wikipedia →</a></p>
-            <p><a href="https://youtube.com${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op YouTube →</a></p>
+            <p><a href="https://youtube.com/search?q=${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op YouTube →</a></p>
         `;
+
+        // 3. Toon het Wikipedia-venster direct op je pagina
+        wikiVenster.style.display = 'block';
+        wikiVenster.src = `https://wikipedia.org/search?q=${encodeURIComponent(zoekwoord)}`;
     });
 </script>
-
-
-
 
     </body>
 </html>
