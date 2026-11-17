@@ -16,7 +16,7 @@
   }
 
         a {
-            display; inline-block;
+            display: inline-block;
             background-color: #FF0000;
             text-decoration: none;
         }
@@ -81,7 +81,7 @@ input:focus {
         resultatenVak.innerHTML = `
             <h3>Resultaten voor: "${zoekwoord}"</h3>
             <p><a href="https://google.com/search?q=${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Google →</a></p>
-            <p><a href="https://youtube.com/results?search_query= dus at youtube${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op YouTube →</a></p>
+            <p><a href="https://youtube.com/results?search_query=${encodeURIComponent(zoekwoord)}" target="_blank">Zoek op YouTube →</a></p>
         `;
 
         // 3. Toon het Wikipedia-venster direct op je pagina
