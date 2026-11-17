@@ -53,56 +53,27 @@ input:focus {
 <!-- Hier verschijnen straks jouw resultaten op de pagina -->
 <div id="resultaten"></div>
 
-      <script>
+<script>
     const formulier = document.getElementById('zoekformulier');
     const resultatenVak = document.getElementById('resultaten');
 
-    formulier.addEventListener('submit', async function(event) {
+    formulier.addEventListener('submit', function(event) {
         event.preventDefault();
-
         const zoekwoord = formulier.q.value;
 
-        // 1. Zet ?q=... netjes in jouw eigen adresbalk bovenaan
-        const nieuweUrl = '?q=' + encodeURIComponent(zoekwoord);
-        window.history.pushState({}, '', nieuweUrl);
+        // Zet ?q=... netjes in je eigen adresbalk
+        window.history.pushState({}, '', '?q=' + encodeURIComponent(zoekwoord));
 
-        // 2. Laat zien dat hij aan het zoeken is
-        resultatenVak.innerHTML = '<p>Bezig met zoeken...</p>';
-
-        // 3. Haal echte zoekresultaten op via de Wikipedia zoek-API
-        const apiUrl = `https://wikipedia.org{encodeURIComponent(zoekwoord)}&format=json&origin=*`;
-        
-        const antwoord = await fetch(apiUrl);
-        const data = await antwoord.json();
-        const resultaten = data.query.search;
-
-        // 4. Bouw de resultatenlijst op jouw eigen pagina
-        let html = `<h3>Resultaten voor: "${zoekwoord}"</h3>`;
-
-        if (resultaten.length === 0) {
-            html += `<p>Geen directe artikelen gevonden op Wikipedia.</p>`;
-        } else {
-            resultaten.forEach(item => {
-                const paginaLink = `https://wikipedia.org{encodeURIComponent(item.title)}`;
-                html += `
-                    <div style="margin-bottom: 20px; max-width: 600px;">
-                        <a href="${paginaLink}" target="_blank" style="font-size: 18px; color: #1a0dab; text-decoration: none; font-weight: bold;">
-                            ${item.title}
-                        </a>
-                        <p style="margin: 5px 0; color: #4d5156; font-size: 14px;">
-                            ${item.snippet}...
-                        </p>
-                    </div>
-                `;
-            });
-        }
-
-        // 5. Zet onderaan ook nog een knop om op Google verder te zoeken
-        html += `<hr><p><a href="https://google.com{encodeURIComponent(zoekwoord)}" target="_blank">Verder zoeken op Google naar "${zoekwoord}" →</a></p>`;
-
-        resultatenVak.innerHTML = html;
+        // Toon direct de klikbare opties
+        resultatenVak.innerHTML = `
+            <h3>Zoekresultaten voor: "${zoekwoord}"</h3>
+            <p><a href="https://google.com{encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Google →</a></p>
+            <p><a href="https://wikipedia.org{encodeURIComponent(zoekwoord)}" target="_blank">Zoek op Wikipedia →</a></p>
+            <p><a href="https://youtube.com{encodeURIComponent(zoekwoord)}" target="_blank">Zoek op YouTube →</a></p>
+        `;
     });
 </script>
+
 
 
 
