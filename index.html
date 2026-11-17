@@ -44,9 +44,35 @@ input:focus {
   <body>
       <h1><span class="geel">search</span><span class="blauw">.</span><span class="groen">zoek</span></h1>
     
-      <form action="https://www.google.com/search" method="get">
-        <input type="text" name="q" placeholder="Zoek op het web..." required autofocus>
-        <button type="submit">Zoeken</button>
-    </form>
+    <!-- Verander je form-regel naar dit: -->
+<form id="zoekformulier">
+    <input type="text" name="q" placeholder="Zoek op het web..." required autofocus>
+    <button type="submit">Zoeken</button>
+</form>
+
+<!-- Hier verschijnen straks jouw resultaten op de pagina -->
+<div id="resultaten"></div>
+
+<script>
+    const formulier = document.getElementById('zoekformulier');
+    const resultatenVak = document.getElementById('resultaten');
+
+    formulier.addEventListener('submit', function(event) {
+        // 1. Zorg dat de pagina NIET doorstuurt of herlaadt
+        event.preventDefault();
+
+        // 2. Haal de waarde op uit het vakje met name="q"
+        const zoekwoord = formulier.q.value;
+
+        // 3. Toon het zoekwoord en handige klikbare links op jouw eigen pagina
+        resultatenVak.innerHTML = `
+            <h3>Resultaten voor: "${zoekwoord}"</h3>
+            <p><a href="https://google.com{zoekwoord}" target="_blank">Bekijk alle resultaten op Google</a></p>
+            <p><a href="https://wikipedia.org{zoekwoord}" target="_blank">Zoek "${zoekwoord}" op Wikipedia</a></p>
+            <p><a href="https://youtube.com{zoekwoord}" target="_blank">Zoek video's op YouTube</a></p>
+        `;
+    });
+</script>
+
     </body>
 </html>
